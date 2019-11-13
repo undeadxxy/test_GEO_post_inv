@@ -27,12 +27,20 @@ load wavelet;
 % segy information of initial model 
 GPostInvParam.initModel.mode = 'segy';
 GPostInvParam.initModel.segyInfo = GSegyInfo;
-GPostInvParam.initModel.segyInfo.t0 = 0;
 GPostInvParam.initModel.segyInfo.isPosZero = 0;
+
+GPostInvParam.initModel.segyInfo.t0 = 0;
 GPostInvParam.initModel.segyInfo.inlineId = 3;
 GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
-GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\inv_multi_wells_for_init_IP_Horizon_init_005_onewell.sgy';
+% GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\inv_multi_wells_for_init_IP_Horizon_init_005_onewell.sgy';
+
+% GPostInvParam.initModel.segyInfo.t0 = 755;
 % GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_Lu_init_AM50Hz.sgy';
+
+GPostInvParam.initModel.segyInfo.inlineId = 48;
+GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
+GPostInvParam.initModel.segyInfo.t0 = 0;
+GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_BGP_Init.sgy';
 
 % segy information of poststack file
 GPostInvParam.postSeisData.segyInfo = GSegyInfo;
@@ -46,8 +54,9 @@ GPostInvParam.postSeisData.segyFileName = 'D:\data\seismic data\geo-block\data\s
 GPostInvParam.postSeisData.shiftSegyFileName = 'D:\data\seismic data\geo-block\data\seismic\phase_shift_90.sgy';
 GPostInvParam.dt = 1;                           
 GPostInvParam.isNormal = 1;                     % whether normalize
-GPostInvParam.upNum = 130;                      
-GPostInvParam.downNum = 50;                     
+% GPostInvParam.upNum = 130;                      
+GPostInvParam.downNum = 50;      
+GPostInvParam.upNum = 80;     
 GPostInvParam.isSaveMode = 1;
 GPostInvParam.waveletFreq = 45;
 
