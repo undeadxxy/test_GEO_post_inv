@@ -13,6 +13,9 @@ GPlotParam.linewidth = 1.5;
 GPlotParam.fontsize = 9;
 GPlotParam.fontweight = 'bold';
 
+GShowProfileParam.isLegend = 0;
+GShowProfileParam.plotParam = GPlotParam;
+
 GSegyInfo.isNegative = 0;
 basePath = 'D:/data/matlab_data/2018_POST_DLSR/geoeast';
 
@@ -65,5 +68,3 @@ GPostInvParam.waveletFreq = 45;
 GPostInvParam.wavelet = wavelet;
 parentPath = 'IP_DIC';
 
-GShowProfileParam.dataRange = [8000 16000];
-GShowProfileParam.isLegend = 0;
