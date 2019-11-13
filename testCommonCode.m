@@ -1,0 +1,60 @@
+% clc;
+clear all;
+close all;
+
+load GPostInvParam.mat;
+load GSegyInfo;
+load GShowProfileParam.mat;
+load GSparseInvParam.mat;
+load GTrainDICParam;
+
+GPlotParam.fontname = 'Times New Roman';
+GPlotParam.linewidth = 1.5;
+GPlotParam.fontsize = 9;
+GPlotParam.fontweight = 'bold';
+
+GSegyInfo.isNegative = 0;
+basePath = 'D:/data/matlab_data/2018_POST_DLSR/geoeast';
+
+%% path folder
+GPostInvParam.modelSavePath = sprintf('%s/welllogTest', basePath);
+mkdir(GPostInvParam.modelSavePath);
+
+load wellLogs;
+load timeLine.mat;
+load wavelet;
+
+% segy information of initial model 
+GPostInvParam.initModel.mode = 'segy';
+GPostInvParam.initModel.segyInfo = GSegyInfo;
+GPostInvParam.initModel.segyInfo.t0 = 0;
+GPostInvParam.initModel.segyInfo.isPosZero = 0;
+GPostInvParam.initModel.segyInfo.inlineId = 3;
+GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
+GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\inv_multi_wells_for_init_IP_Horizon_init_005_onewell.sgy';
+% GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_Lu_init_AM50Hz.sgy';
+
+% segy information of poststack file
+GPostInvParam.postSeisData.segyInfo = GSegyInfo;
+GPostInvParam.postSeisData.segyInfo.t0 = 0;
+GPostInvParam.postSeisData.segyInfo.isPosZero = 0;
+GPostInvParam.postSeisData.segyInfo.inlineId = 3;
+GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
+GPostInvParam.postSeisData.segyFileName = 'D:\data\seismic data\geo-block\data\seismic\seismic.sgy';
+
+% some other information
+GPostInvParam.postSeisData.shiftSegyFileName = 'D:\data\seismic data\geo-block\data\seismic\phase_shift_90.sgy';
+GPostInvParam.dt = 1;                           
+GPostInvParam.isNormal = 1;                     % whether normalize
+GPostInvParam.upNum = 130;                      
+GPostInvParam.downNum = 50;                     
+GPostInvParam.isSaveMode = 1;
+GPostInvParam.waveletFreq = 45;
+
+% load zeroPhaseWavelet.mat;
+% load ricker.mat;
+GPostInvParam.wavelet = wavelet;
+parentPath = 'IP_DIC';
+
+GShowProfileParam.dataRange = [8000 16000];
+GShowProfileParam.isLegend = 0;
