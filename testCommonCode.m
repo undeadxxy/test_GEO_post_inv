@@ -40,10 +40,15 @@ GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
 % GPostInvParam.initModel.segyInfo.t0 = 755;
 % GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_Lu_init_AM50Hz.sgy';
 
+% GPostInvParam.initModel.segyInfo.inlineId = 48;
+% GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
+% GPostInvParam.initModel.segyInfo.t0 = 0;
+% GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_BGP_Init.sgy';
+
 GPostInvParam.initModel.segyInfo.inlineId = 48;
 GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
 GPostInvParam.initModel.segyInfo.t0 = 0;
-GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_BGP_Init.sgy';
+GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\modelall_Volume_PP_IMP.sgy';
 
 % segy information of poststack file
 GPostInvParam.postSeisData.segyInfo = GSegyInfo;
