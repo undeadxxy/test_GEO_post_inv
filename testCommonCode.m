@@ -65,6 +65,7 @@ GPostInvParam.waveletFreq = 45;
 
 % load zeroPhaseWavelet.mat;
 % load ricker.mat;
+load rickerWavelet.mat;
 GPostInvParam.wavelet = wavelet;
 parentPath = 'IP_DIC';
 
