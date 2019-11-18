@@ -325,3 +325,5 @@ bsShowInvProfiles(GPostInvParam, GShowProfileParam, invResults, wellLogs);
 set(gcf, 'position', [140         132        1360         654]);
 % bsSaveFigure('./pictures', sprintf('inline_%d', inId));
 bsSaveFigure('./pictures_0.5', sprintf('inline_%d_compare', inId));
+
+%%
