@@ -8,6 +8,9 @@ load GShowProfileParam.mat;
 load GSparseInvParam.mat;
 load GTrainDICParam;
 
+
+
+
 GPlotParam.fontname = 'Times New Roman';
 GPlotParam.linewidth = 1.5;
 GPlotParam.fontsize = 9;
@@ -45,7 +48,6 @@ GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\mod
 % GPostInvParam.initModel.segyInfo.t0 = 0;
 % GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_BGP_Init.sgy';
 
-<<<<<<< HEAD
 % GPostInvParam.initModel.segyInfo.inlineId = 48;
 % GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
 % GPostInvParam.initModel.segyInfo.t0 = 0;
@@ -55,7 +57,6 @@ GPostInvParam.initModel.segyInfo.inlineId = 48;
 GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
 GPostInvParam.initModel.segyInfo.t0 = 780;
 GPostInvParam.initModel.segyFileName = 'G:\matlab_projects_inv\data\BGP_result\geoeast_impedance_sparse_impulse_bgp.sgy';
-=======
 % GPostInvParam.initModel.segyInfo.t0 = 780;
 % GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\inv_result\geoeast_impedance_sparse_impulse_bgp.sgy';
 
@@ -63,7 +64,6 @@ GPostInvParam.initModel.segyFileName = 'G:\matlab_projects_inv\data\BGP_result\g
 % GPostInvParam.postSeisData.segyInfo.crosslineId = 6;
 % GPostInvParam.initModel.segyInfo.t0 = 0;
 % GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\modelall_Volume_PP_IMP.sgy';
->>>>>>> ce333ae6c365516db0c8b1cd595907fb9057722f
 
 % segy information of poststack file
 GPostInvParam.postSeisData.segyInfo = GSegyInfo;
@@ -76,15 +76,13 @@ GPostInvParam.postSeisData.segyFileName = 'G:\matlab_projects_inv\data\seismic\s
 % some other information
 GPostInvParam.postSeisData.shiftSegyFileName = 'D:\data\seismic data\geo-block\data\seismic\phase_shift_90.sgy';
 GPostInvParam.dt = 1;                           
-<<<<<<< HEAD
+
 GPostInvParam.isNormal = 1;                     % whether normalize  
 GPostInvParam.isSaveMode = 1;
-=======
 GPostInvParam.isNormal = 1;                     % whether normalize
 GPostInvParam.upNum = 80;   
 % GPostInvParam.upNum = 80;  
 GPostInvParam.downNum = 50;      
->>>>>>> ce333ae6c365516db0c8b1cd595907fb9057722f
 GPostInvParam.waveletFreq = 45;
 GPostInvParam.isParallel = 1;
 GPostInvParam.isSaveMode = 0;
