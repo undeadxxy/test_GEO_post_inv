@@ -134,3 +134,5 @@ GTrainDICParam.filtCoef= 0.5;
 GSparseInvParam.sparsity =1;
 GSparseInvParam.stride = 1;
 GSparseInvParam.isSparseRebuild = 1;
+
+%%
