@@ -15,7 +15,7 @@ GPlotParam.fontsize = 9;
 GPlotParam.fontweight = 'bold';
 
 GSegyInfo.isNegative = 0;
-basePath = 'C:/Users/binst/HRS projects/GEO_POST/';
+basePath = 'D:/data/seismic data/HeDao_data/';
 
 load wellLogs;
 load timeLine.mat;
@@ -32,43 +32,44 @@ GPostInvParam.initModel.segyInfo.isPosZero = 0;
 % GPostInvParam.initModel.segyInfo.t0 = 0;
 % GPostInvParam.initModel.segyInfo.inlineId = 9;
 % GPostInvParam.initModel.segyInfo.crosslineId = 21;
-% GPostInvParam.initModel.segyFileName = sprintf('%s/model/inv_multi_wells_for_init_IP_Horizon_init_005_onewell.sgy', basePath);
+% GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\inv_multi_wells_for_init_IP_Horizon_init_005_onewell.sgy';
 
 % GPostInvParam.initModel.segyInfo.t0 = 755;
-% GPostInvParam.initModel.segyFileName = sprintf('%s/model/Imp_Lu_init_AM50Hz.sgy', basePath);
+% GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_Lu_init_AM50Hz.sgy';
 
 GPostInvParam.initModel.segyInfo.inlineId = 189;
 GPostInvParam.initModel.segyInfo.crosslineId = 21;
 GPostInvParam.initModel.segyInfo.t0 = 0;
-GPostInvParam.initModel.segyFileName = sprintf('%s/model/Imp_BGP_Init.sgy', basePath);
+GPostInvParam.initModel.segyFileName = 'D:\data\seismic data\geo-block\data\model\Imp_BGP_Init.sgy';
 
 % GPostInvParam.initModel.segyInfo.inlineId = 189;
 % GPostInvParam.initModel.segyInfo.crosslineId = 21;
 % GPostInvParam.initModel.segyInfo.t0 = 0;
-% GPostInvParam.initModel.segyFileName = sprintf('%s/model/modelall_Volume_PP_IMP.sgy', basePath);
+% GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\modelall_Volume_PP_IMP.sgy';
 
 % GPostInvParam.initModel.segyInfo.inlineId = 189;
 % GPostInvParam.initModel.segyInfo.crosslineId = 21;
 % GPostInvParam.initModel.segyInfo.t0 = 780;
-% GPostInvParam.initModel.segyFileName = sprintf('%s/model/geoeast_impedance_sparse_impulse_bgp.sgy', basePath);
+% GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\geoeast_impedance_sparse_impulse_bgp.sgy';
 
-% GPostInvParam.initModel.segyInfo.inlineId = 189;
-% GPostInvParam.initModel.segyInfo.crosslineId = 21;
+% GPostInvParam.initModel.segyInfo.t0 = 780;
+% GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\inv_result\geoeast_impedance_sparse_impulse_bgp.sgy';
+
+% GPostInvParam.initModel.segyInfo.inlineId = 48;
+% GPostInvParam.initModel.segyInfo.crosslineId = 6;
 % GPostInvParam.initModel.segyInfo.t0 = 0;
-% GPostInvParam.initModel.segyFileName = sprintf('%s/model/modelall_Volume_PP_IMP.sgy', basePath)
+% GPostInvParam.initModel.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\model\modelall_Volume_PP_IMP.sgy';
+
 % segy information of poststack file
 GPostInvParam.postSeisData.segyInfo = GSegyInfo;
 GPostInvParam.postSeisData.segyInfo.t0 = 0;
 GPostInvParam.postSeisData.segyInfo.isPosZero = 0;
 GPostInvParam.postSeisData.segyInfo.inlineId = 9;
 GPostInvParam.postSeisData.segyInfo.crosslineId = 21;
-GPostInvParam.postSeisData.segyFileName = sprintf('%s/seismic/seismic.sgy', basePath);
-
+GPostInvParam.postSeisData.segyFileName = 'C:\Users\binst\HRS projects\GEO_POST\seismic\seismic.sgy';
 
 % some other information
-GPostInvParam.modelSavePath = basePath;
-
-GPostInvParam.postSeisData.shiftSegyFileName = sprintf('%s/seismic/phase_shift_90.sgy', basePath);
+GPostInvParam.postSeisData.shiftSegyFileName = 'D:\data\seismic data\geo-block\data\seismic\phase_shift_90.sgy';
 GPostInvParam.dt = 1;                           
 
 GPostInvParam.isNormal = 1;                     % whether normalize  
@@ -79,8 +80,6 @@ GPostInvParam.upNum = 80;
 GPostInvParam.downNum = 50;      
 GPostInvParam.waveletFreq = 45;
 GPostInvParam.isParallel = 1;
-GPostInvParam.numWorkers = bsGetMaxNumWorkers();
-
 GPostInvParam.isSaveMode = 0;
 GPostInvParam.isReadMode = 0;
 
@@ -127,22 +126,9 @@ GTrainDICParam.sizeAtom = 60;
 GTrainDICParam.nAtom = 8000;
 GTrainDICParam.filtCoef= 0.5;
 
-
-
 %% set the options for sparse inversion
 GSparseInvParam.sparsity =1;
 GSparseInvParam.stride = 1;
 GSparseInvParam.isSparseRebuild = 1;
-trainNum = 100;
-% train_names = {'W1-1901', 'W1-2013', 'W1-2133', 'W2-1901', 'W2-2024', 'W2-2214', 'W3-1833'};
-% train_ids = getIdsFromWelllogs(wellLogs, train_names);
-train_ids = randperm(length(wellLogs), trainNum);
-% trainNum = length(trainWelllogs);
-[DIC, train_ids] = bsTrainOneDIC(wellLogs, train_ids, GTrainDICParam);
-
-blind_ids = setdiff(1:length(wellLogs), train_ids);
-GSparseInvParam.DIC = DIC;
-
-
 
 %%
