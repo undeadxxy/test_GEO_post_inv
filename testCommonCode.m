@@ -8,14 +8,13 @@ load GShowProfileParam.mat;
 load GSparseInvParam.mat;
 load GTrainDICParam;
 
-
 GPlotParam.fontname = 'Times New Roman';
 GPlotParam.linewidth = 1.5;
 GPlotParam.fontsize = 9;
 GPlotParam.fontweight = 'bold';
 
 GSegyInfo.isNegative = 0;
-basePath = 'C:/Users/binst/HRS projects/GEO_POST/';
+basePath = 'E:/HRS projects/GEO_POST/';
 
 load wellLogs;
 load timeLine.mat;
@@ -29,18 +28,18 @@ GPostInvParam.initModel.mode = 'segy';
 GPostInvParam.initModel.segyInfo = GSegyInfo;
 GPostInvParam.initModel.segyInfo.isPosZero = 0;
 
-% GPostInvParam.initModel.segyInfo.t0 = 0;
-% GPostInvParam.initModel.segyInfo.inlineId = 9;
-% GPostInvParam.initModel.segyInfo.crosslineId = 21;
-% GPostInvParam.initModel.segyFileName = sprintf('%s/model/inv_multi_wells_for_init_IP_Horizon_init_005_onewell.sgy', basePath);
+GPostInvParam.initModel.segyInfo.t0 = 0;
+GPostInvParam.initModel.segyInfo.inlineId = 9;
+GPostInvParam.initModel.segyInfo.crosslineId = 21;
+GPostInvParam.initModel.segyFileName = sprintf('%s/model/inv_multi_wells_for_init_IP_Horizon_init_005_onewell.sgy', basePath);
 
 % GPostInvParam.initModel.segyInfo.t0 = 755;
 % GPostInvParam.initModel.segyFileName = sprintf('%s/model/Imp_Lu_init_AM50Hz.sgy', basePath);
 
-GPostInvParam.initModel.segyInfo.inlineId = 189;
-GPostInvParam.initModel.segyInfo.crosslineId = 21;
-GPostInvParam.initModel.segyInfo.t0 = 0;
-GPostInvParam.initModel.segyFileName = sprintf('%s/model/Imp_BGP_Init.sgy', basePath);
+% GPostInvParam.initModel.segyInfo.inlineId = 189;
+% GPostInvParam.initModel.segyInfo.crosslineId = 21;
+% GPostInvParam.initModel.segyInfo.t0 = 0;
+% GPostInvParam.initModel.segyFileName = sprintf('%s/model/Imp_BGP_Init.sgy', basePath);
 
 % GPostInvParam.initModel.segyInfo.inlineId = 189;
 % GPostInvParam.initModel.segyInfo.crosslineId = 21;
@@ -87,8 +86,12 @@ GPostInvParam.isReadMode = 0;
 GPostInvParam.bound.mode = 'based_on_init';
 GPostInvParam.bound.offset_init = 2500;
 
-GPostInvParam.indexOfTimeInWellData = 2;
-
+GPostInvParam.indexInWellData.time = 2;
+GPostInvParam.indexInWellData.Ip = 1;
+% if you want to see the progress information, set it as 1. But it should
+% be noted that this setting will decrease the efficiency a little bit and 
+% call I/O many times.
+GPostInvParam.isPrintBySavingFile = 0; 
 % load zeroPhaseWavelet.mat;
 % load ricker.mat;
 % load rickerWavelet.mat;
