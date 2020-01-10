@@ -1,6 +1,6 @@
 % clc;
 clear all;
-% close all;
+close all;
 
 basePath = 'E:/HRS projects/GEO_POST/';
 
@@ -61,7 +61,7 @@ GInvParam.postSeisData.shiftfileName = sprintf('%s/seismic/phase_shift_90.sgy', 
 % some other information
 GInvParam.dt = 1;                           
 GInvParam.usedTimeLineId = 2;               % set the index of target horizon in timeLine
-GInvParam.upNum = 80;   
+GInvParam.upNum = 130;   
 GInvParam.downNum = 50;      
 GInvParam.isParallel = 1;
 GInvParam.indexInWellData.ip = 1;
@@ -77,7 +77,10 @@ GInvParam.modelSavePath = basePath;
 GInvParam.depth2time.isShowCompare = 0;
 GInvParam.depth2time.showCompareNum = 10;
 GInvParam.depth2time.saveOffsetNum = 40;
-[GInvParam, wellLogs, wavelet] = bsDepth2Time(GInvParam, timeLine, wellLogs, 'ricker');
+GInvParam.depth2time.searchOffsetNum = 5;
+load wavelet.mat;
+GInvParam.wavelet = wavelet;
+[GInvParam, wellLogs, wavelet] = bsDepth2Time(GInvParam, timeLine, wellLogs, 'input');
 GInvParam.wavelet = wavelet;
 % GInvParam.wavelet = wavelet * 0.1;
 
@@ -89,7 +92,7 @@ GTrainDICParam = bsCreateGTrainDICParam(...
     'filtCoef', GShowProfileParam.showWellFiltCoef);
 GTrainDICParam.iterNum = 5;
 
-trainNum = 100;
+trainNum = 70;
 train_ids = randperm(length(wellLogs), trainNum);
 % blind_ids = setdiff(1:length(wellLogs), train_ids);
 
