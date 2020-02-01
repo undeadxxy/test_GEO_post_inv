@@ -13,9 +13,9 @@ function bsMixTwoResults(lowFileName, highFileName, outFileName, GSegyInfo, ...
     parfor i = 1 : nTrace
         jointData(:, i) = bsMixTwoSignal(lowData(:, i), highData(:, i), fs1, fs2, dt/1000);
 
-        if mod(i, 1000) == 0
-            fprintf('Mixing signals %d/%d...\n', i, nTrace);
-        end
+%         if mod(i, 1000) == 0
+%             fprintf('Mixing signals %d/%d...\n', i, nTrace);
+%         end
     end
     
     res.inIds = inIds;

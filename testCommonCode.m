@@ -15,7 +15,7 @@ load wavelet;
 GSegyInfo = bsCreateGSegyInfo();
 %% set the options for showing the results 
 GShowProfileParam = bsCreateGShowProfileParam();
-GShowProfileParam.showWellFiltCoef = 2;
+GShowProfileParam.showWellFiltCoef = 0.5;
 
 %% set the options for inversion
 GInvParam = bsCreateGInvParam('poststack');
@@ -62,8 +62,8 @@ GInvParam.postSeisData.shiftfileName = sprintf('%s/seismic/phase_shift_90.sgy', 
 % some other information
 GInvParam.dt = 1;                           
 GInvParam.usedTimeLineId = 2;               % set the index of target horizon in timeLine
-GInvParam.upNum = 80;   
-GInvParam.downNum = 50;      
+GInvParam.upNum = 50;   
+GInvParam.downNum = 30;      
 GInvParam.isParallel = 1;
 GInvParam.indexInWellData.ip = 1;
 GInvParam.indexInWellData.time = 2;
@@ -88,8 +88,8 @@ GInvParam.wavelet = wavelet;
 %% set the options for training dictionary
 GTrainDICParam = bsCreateGTrainDICParam(...
     'one', ...
-    'sizeAtom', 90, ...
-    'nAtom', 8000, ...
+    'sizeAtom', 60, ...
+    'nAtom', 6000, ...
     'filtCoef', GShowProfileParam.showWellFiltCoef);
 GTrainDICParam.iterNum = 5;
 
