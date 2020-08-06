@@ -14,8 +14,8 @@ GSegyInfo = bsCreateGSegyInfo();
 GShowProfileParam.showWellFiltCoef = 0.4; % filter coeficient for displaying color wells in profile
 
 GInvParam.dt = 1;    
-GInvParam.upNum = 80;
-GInvParam.downNum = 50;
+GInvParam.upNum = 50;
+GInvParam.downNum = 46;
 GInvParam.indexInWellData.ip = 1;
 GInvParam.indexInWellData.time = 2;
 GInvParam.usedTimeLineId = 2;
@@ -33,23 +33,25 @@ GSegyInfo.t0 = 0;
 validRange = [1 1e10];
 
 % Get inline and crossline of a profile crossing several wells
-[inIds, crossIds] = bsGetCDPsByRange([1:142], [1:110]);
+% [inIds, crossIds] = bsGetCDPsByRange([1:142], [1:110]);
+[inIds, crossIds] = bsGetProfileCrossingWells(GInvParam, wellLogs([23, 21, 18, 53, 80, 75]), ...
+    'isAlongCrossline', 0);
 
-highName = [basePath, '\sgy_results\0111SMIResult_wellnumber15.sgy'];
-lowName1 = [basePath, '\sgy_results\Ip-DLSR_01_16 (gamma=0.3 sparsity=1)-NLM_2020_01_16 _inline_[1_142]_crossline_[1_110].sgy'];
+highName = 'E:\HRS projects\GEO_POST\chenting\0206SMIResult_wellnumber15modifychoosewellnewhor.sgy';
+lowName1 = 'E:\HRS projects\GEO_POST\sgy_results\Ip_字典反演结果_inline_[1_142]_crossline_[16_83].sgy';
 % lowName = [basePath, '\sgy_results\Ip_DLSR (gamma=0.4 sparsity=2)_inline_[1_142]_crossline_[1_110].sgy'];
 outFileName1 = [basePath, '\sgy_results\Mixed1.sgy'];
-lowName2 = [basePath, '\sgy_results\Ip-LFC_01_16-NLM_2020_01_16 _inline_[1_142]_crossline_[1_110].sgy'];
+lowName2 = 'E:\HRS projects\GEO_POST\sgy_results\Ip_普通方法_inline_[1_142]_crossline_[16_83].sgy';
 outFileName2 = [basePath, '\sgy_results\Mixed2.sgy'];
 
-fs1 = 50;
-fs2 = 60;
+fs1 = 60;
+fs2 = 80;
 
 bsMixTwoResults(lowName1, highName, outFileName1, GSegyInfo, ...
-    inIds, crossIds, timeLine{1}, timeLine{3}, GInvParam.dt, validRange, fs1, fs2);
+    inIds, crossIds, timeLine{2}, GInvParam.upNum, GInvParam.downNum, GInvParam.dt, validRange, fs1, fs2);
 
 bsMixTwoResults(lowName2, highName, outFileName2, GSegyInfo, ...
-    inIds, crossIds, timeLine{1}, timeLine{3}, GInvParam.dt, validRange, fs1, fs2);
+    inIds, crossIds, timeLine{2}, GInvParam.upNum, GInvParam.downNum, GInvParam.dt, validRange, fs1, fs2);
 
 methods = {
     
@@ -116,27 +118,33 @@ methods = {
 
 % [inIds, crossIds] = bsGetProfileCrossingWells(GInvParam, wellLogs(1), ...
 %     'isAlongCrossline', 1);
-[inIds, crossIds] = bsGetProfileCrossingWells(GInvParam, wellLogs([23, 21, 18, 53, 80, 75]), ...
-    'isAlongCrossline', 0);
+
 invResults = bsPostInvTrueMultiTraces(GInvParam, inIds, crossIds, timeLine, methods);
 
-NLMResults = invResults;
-NLMResults([5, 6]) = bsNLMInvResults(invResults([5, 6]), [], ...
-    'searchOffset', 4, 'windowSize', [2, 4], 'nPointsUsed', 4, ...
-    'stride', [1, 1, 1], 'searchStride', [1, 1, 1] ...
-);
+% NLMResults = invResults;
+% NLMResults([5, 6]) = bsNLMInvResults(invResults([5, 6]), [], ...
+%     'searchOffset', 4, 'windowSize', [2, 4], 'nPointsUsed', 4, ...
+%     'stride', [1, 1, 1], 'searchStride', [1, 1, 1] ...
+% );
 
-GShowProfileParam.range.ip = [5800 7900];
+GShowProfileParam.range.ip = [5800 7600];
 GShowProfileParam.range.seismic = [-3 3]*1e4;
-GShowProfileParam.colormap.allTheSame = bsGetColormap('original');
+GShowProfileParam.colormap.allTheSame = bsGetColormap('velocity');
 GShowProfileParam.isColorReverse = 0;
 
-GShowProfileParam.scaleFactor = 2;
+GShowProfileParam.scaleFactor = 4;
 GShowProfileParam.showWellOffset = 1;
 GShowProfileParam.plotParam.fontsize = 11;
-GShowProfileParam.showPartVert.mode = 'in_2_horizons';
-GShowProfileParam.showPartVert.horizonIds = [1, 3];
+% GShowProfileParam.showPartVert.mode = 'in_2_horizons';
+% GShowProfileParam.showPartVert.horizonIds = [1, 3];
+GShowProfileParam.showPartVert.upTime = 40;
+GShowProfileParam.showPartVert.downTime = 50;
+GShowProfileParam.showPartVert.mode = 'up_down_time';
 GShowProfileParam.isShowHorizon = 0;
 
-bsShowInvProfiles(GInvParam, GShowProfileParam, NLMResults, wellLogs, timeLine);
+for i = 1 : length(invResults)
+    invResults{i}.showFiltCoef = 0.7;
+end
+
+bsShowInvProfiles(GInvParam, GShowProfileParam, invResults, wellLogs, timeLine);
 set(gcf, 'position', [ 96          54        1672         780]);

@@ -1,11 +1,20 @@
 function bsMixTwoResults(lowFileName, highFileName, outFileName, GSegyInfo, ...
-    inIds, crossIds, horizon1, horizon2, dt, validRange, fs1, fs2)
+    inIds, crossIds, horizon, upNum, downNum, dt, validRange, fs1, fs2)
 
-    [highData, ~, startTime] = bsReadTracesByIdsAndHorizons(highFileName, GSegyInfo, inIds, crossIds, ...
-        horizon1, horizon2, dt, validRange);
+%     [highData, ~, startTime] = bsReadTracesByIdsAndHorizons(highFileName, GSegyInfo, inIds, crossIds, ...
+%         horizon1, horizon2, dt, validRange);
+%     lowData = bsReadTracesByIdsAndHorizons(lowFileName, GSegyInfo, inIds, crossIds, ...
+%         horizon1, horizon2, dt, validRange);
 
-    lowData = bsReadTracesByIdsAndHorizons(lowFileName, GSegyInfo, inIds, crossIds, ...
-        horizon1, horizon2, dt, validRange);
+    horizonTime = bsGetHorizonTime(horizon, inIds, crossIds, 1);
+    
+    startTime = horizonTime - upNum * dt;
+    sampNum = upNum + downNum;
+    
+    highData = bsReadTracesByIds(highFileName, GSegyInfo, inIds, crossIds, startTime, sampNum, dt);
+    lowData = bsReadTracesByIds(lowFileName, GSegyInfo, inIds, crossIds, startTime, sampNum, dt);
+    
+    
 
     jointData = zeros(size(lowData));
     nTrace = size(highData, 2);
